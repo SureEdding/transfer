@@ -1,22 +1,22 @@
-package org.suree.account.domain;
+package org.suree.account.merchant.domain;
 
 import java.math.BigDecimal;
 
-public class Account {
+public class MerchantAccountTransaction {
 
     private Integer id;
+
+    private String transactionNo;
 
     private Integer accountNo;
 
     private BigDecimal amount;
 
-    private BigDecimal frozen_amount;
+    private Integer type;
 
-    private Integer version;
+    private Integer status;
 
     private Integer createTime;
-
-    private Integer updateTime;
 
     public Integer getId() {
         return id;
@@ -24,6 +24,14 @@ public class Account {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTransactionNo() {
+        return transactionNo;
+    }
+
+    public void setTransactionNo(String transactionNo) {
+        this.transactionNo = transactionNo;
     }
 
     public Integer getAccountNo() {
@@ -42,20 +50,20 @@ public class Account {
         this.amount = amount;
     }
 
-    public BigDecimal getFrozen_amount() {
-        return frozen_amount;
+    public Integer getType() {
+        return type;
     }
 
-    public void setFrozen_amount(BigDecimal frozen_amount) {
-        this.frozen_amount = frozen_amount;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
-    public Integer getVersion() {
-        return version;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setVersion(Integer version) {
-        this.version = version;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getCreateTime() {
@@ -66,24 +74,16 @@ public class Account {
         this.createTime = createTime;
     }
 
-    public Integer getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Integer updateTime) {
-        this.updateTime = updateTime;
-    }
-
     @Override
     public String toString() {
-        return "Account{" +
+        return "MerchantAccountTransaction{" +
                 "id=" + id +
+                ", transactionNo='" + transactionNo + '\'' +
                 ", accountNo=" + accountNo +
                 ", amount=" + amount +
-                ", frozen_amount=" + frozen_amount +
-                ", version=" + version +
+                ", type=" + type +
+                ", status=" + status +
                 ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
                 '}';
     }
 }

@@ -1,17 +1,21 @@
-package org.suree.account.domain.param.dto;
+package org.suree.account.user.domain.param.bo;
 
 import java.math.BigDecimal;
 
-public class AccountOperateParamDTO {
-
+public class AccountOperateParamBO {
 
     private Integer fromAccountNo;
 
+    private Integer accountAddTransactionId;
+
     private Integer toAccountNo;
+
+    private Integer accountMinusTransactionId;
 
     private String transactionNo;
 
     private BigDecimal amount;
+
 
     public Integer getFromAccountNo() {
         return fromAccountNo;
@@ -45,11 +49,29 @@ public class AccountOperateParamDTO {
         this.amount = amount;
     }
 
+    public Integer getAccountAddTransactionId() {
+        return accountAddTransactionId;
+    }
+
+    public void setAccountAddTransactionId(Integer accountAddTransactionId) {
+        this.accountAddTransactionId = accountAddTransactionId;
+    }
+
+    public Integer getAccountMinusTransactionId() {
+        return accountMinusTransactionId;
+    }
+
+    public void setAccountMinusTransactionId(Integer accountMinusTransactionId) {
+        this.accountMinusTransactionId = accountMinusTransactionId;
+    }
+
     @Override
     public String toString() {
-        return "AccountOperateParamDTO{" +
+        return "AccountOperateParamBO{" +
                 "fromAccountNo=" + fromAccountNo +
+                ", accountAddTransactionId=" + accountAddTransactionId +
                 ", toAccountNo=" + toAccountNo +
+                ", accountMinusTransactionId=" + accountMinusTransactionId +
                 ", transactionNo='" + transactionNo + '\'' +
                 ", amount=" + amount +
                 '}';
