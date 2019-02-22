@@ -5,7 +5,7 @@ package org.suree.middleware.transaction.domain;
  * 分布式事务采用两步式提交
  * Try - Commit - Cancel
  * 正常应当由一个独立的中间件来进行管理
- * 简易版则以一个上下文实体 + 观察者模式来进行
+ * 简易版则以一个上下文实体 + 观察者模式来模拟统一的事务管理器
  */
 public class TransactionContext {
 

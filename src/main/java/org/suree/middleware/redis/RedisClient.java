@@ -1,5 +1,6 @@
 package org.suree.middleware.redis;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,20 @@ import java.util.UUID;
 public class RedisClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisClient.class);
+
+
+    public Boolean validateToken(String token) {
+        String value = getValue(token);
+        if (StringUtils.isBlank(value)) {
+            return false;
+        }
+        delete(token);
+        return true;
+    }
+
+    public String getValue(String key) {
+        return "true";
+    }
 
     public Boolean lock(String key, Integer expireTime) {
         try {

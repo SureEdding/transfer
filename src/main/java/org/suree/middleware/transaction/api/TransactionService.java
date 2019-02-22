@@ -1,6 +1,7 @@
 package org.suree.middleware.transaction.api;
 
 import org.springframework.stereotype.Service;
+import org.suree.account.merchant.api.MerchantAccountOperateServiceImpl;
 import org.suree.account.user.api.UserAccountOperateServiceImpl;
 import org.suree.middleware.transaction.domain.TransactionContext;
 
@@ -11,6 +12,8 @@ public class TransactionService {
 
     @Resource
     private UserAccountOperateServiceImpl userAccountOperateService;
+    @Resource
+    private MerchantAccountOperateServiceImpl merchantAccountOperateService;
 
     public TransactionContext startTransaction() {
         TransactionContext transactionContext = new TransactionContext();

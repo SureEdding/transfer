@@ -10,7 +10,11 @@ public class TransferRecord {
 
     private Integer fromAccountNo;
 
+    private Integer fromAccountType;
+
     private Integer toAccountNo;
+
+    private Integer toAccountType;
 
     private BigDecimal amount;
 
@@ -25,6 +29,22 @@ public class TransferRecord {
     private Integer createTime;
 
     private Integer updateTime;
+
+    public Integer getToAccountType() {
+        return toAccountType;
+    }
+
+    public void setToAccountType(Integer toAccountType) {
+        this.toAccountType = toAccountType;
+    }
+
+    public Integer getFromAccountType() {
+        return fromAccountType;
+    }
+
+    public void setFromAccountType(Integer fromAccountType) {
+        this.fromAccountType = fromAccountType;
+    }
 
     public Integer getId() {
         return id;
@@ -120,7 +140,9 @@ public class TransferRecord {
                 "id=" + id +
                 ", transactionNo='" + transactionNo + '\'' +
                 ", fromAccountNo=" + fromAccountNo +
+                ", fromAccountType=" + fromAccountType +
                 ", toAccountNo=" + toAccountNo +
+                ", toAccountType=" + toAccountType +
                 ", amount=" + amount +
                 ", status=" + status +
                 ", failCode=" + failCode +

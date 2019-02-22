@@ -5,6 +5,7 @@ import org.suree.account.merchant.domain.MerchantAccount;
 import org.suree.account.merchant.domain.param.dto.MerchantAccountOperateParamDTO;
 import org.suree.account.user.domain.UserAccount;
 import org.suree.account.user.domain.param.dto.UserAccountOperateParamDTO;
+import org.suree.middleware.generator.SerialNumberGenerator;
 import org.suree.middleware.redis.RedisClient;
 import org.suree.middleware.transaction.api.TransactionService;
 import org.suree.middleware.transaction.domain.TransactionContext;
@@ -106,7 +107,10 @@ public class TransferManager {
     }
 
     private TransferRecord saveRecord(TransferRequestParamBO transferRequestParamBO) {
-
+        TransferRecord transferRecord = new TransferRecord();
+        transferRecord.setTransactionNo(SerialNumberGenerator.generate(32));
+        //省略
+        return transferRecord;
     }
 
     private Boolean tryLock(TransferRequestParamBO transferRequestParamBO) {
@@ -124,5 +128,4 @@ public class TransferManager {
     private String generateRedisKey(Integer accountNo) {
         return "ACCOUNT_NO_" + accountNo.toString();
     }
-
 }

@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 public class TransferRequestParamDTO {
 
-
     private Integer fromAccountNo;
 
     private Integer toAccountNo;
@@ -12,6 +11,16 @@ public class TransferRequestParamDTO {
     private BigDecimal amount;
 
     private String comments;
+
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Integer getFromAccountNo() {
         return fromAccountNo;
@@ -52,6 +61,7 @@ public class TransferRequestParamDTO {
                 ", toAccountNo=" + toAccountNo +
                 ", amount=" + amount +
                 ", comments='" + comments + '\'' +
+                ", token='" + token + '\'' +
                 '}';
     }
 }

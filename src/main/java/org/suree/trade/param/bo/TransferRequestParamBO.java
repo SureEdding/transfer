@@ -8,9 +8,19 @@ public class TransferRequestParamBO {
 
     private Integer toAccountNo;
 
+    private String token;
+
     private BigDecimal amount;
 
     private String comments;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Integer getFromAccountNo() {
         return fromAccountNo;
@@ -46,9 +56,10 @@ public class TransferRequestParamBO {
 
     @Override
     public String toString() {
-        return "TransferRequestParamBO{" +
+        return "TransferRequestParamFactory{" +
                 "fromAccountNo=" + fromAccountNo +
                 ", toAccountNo=" + toAccountNo +
+                ", token='" + token + '\'' +
                 ", amount=" + amount +
                 ", comments='" + comments + '\'' +
                 '}';
