@@ -9,15 +9,17 @@ import org.suree.middleware.transaction.domain.TransactionContext;
 public class MerchantAccountOperateServiceImpl implements MerchantAccountService {
 
     public boolean prepareMerchantAccountOperate(TransactionContext transactionContext, MerchantAccountOperateParamDTO accountOperateParamDTO) {
-
+        //逻辑请参考用户部分
         return false;
     }
 
     public boolean commit(TransactionContext transactionContext, MerchantAccountOperateParamDTO accountOperateParamDTO) {
+        //逻辑请参考用户部分
         return false;
     }
 
     public boolean rollback(TransactionContext transactionContext, MerchantAccountOperateParamDTO accountOperateParamDTO) {
+        //逻辑请参考用户部分
         return false;
     }
 

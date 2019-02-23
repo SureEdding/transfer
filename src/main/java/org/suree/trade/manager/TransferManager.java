@@ -72,26 +72,27 @@ public class TransferManager {
             //开启分布式事务
             TransactionContext transactionContext = transactionService.startTransaction();
 
+            UserAccountOperateParamDTO userParam = operateParamFactory.createUserOperateParam(transferRequestParamBO);
+            MerchantAccountOperateParamDTO merchantParam = operateParamFactory.createMerchantOperateParam(transferRequestParamBO);
+
             //事务参与者1
-            UserAccountOperateParamDTO userAccountOperateParamDTO = operateParamFactory.createUserOperateParam(transferRequestParamBO);
-            boolean ret = remoteAccountServiceWrapper.prepareUserAccount(transactionContext, userAccountOperateParamDTO);
+            boolean ret = remoteAccountServiceWrapper.prepareUserAccount(transactionContext, userParam);
             if (!ret) {
-                eventPublisher.publish(new TransactionRollbackEvent(transactionContext));
+                eventPublisher.publish(new TransactionRollbackEvent(transactionContext, userParam, merchantParam));
                 transferRecordService.updateRecords(record, TransferStatusEnum.FAIL, TransferFailedCodeEnum.TRANSACTION_ERROR);
                 return record;
             }
 
             //事务参与者2
-            MerchantAccountOperateParamDTO merchantAccountOperateParamDTO = operateParamFactory.createMerchantOperateParam(transferRequestParamBO);
-            ret = remoteAccountServiceWrapper.prepareMerchantAccount(transactionContext, merchantAccountOperateParamDTO);
+            ret = remoteAccountServiceWrapper.prepareMerchantAccount(transactionContext, merchantParam);
             if (!ret) {
-                eventPublisher.publish(new TransactionRollbackEvent(transactionContext));
+                eventPublisher.publish(new TransactionRollbackEvent(transactionContext, userParam, merchantParam));
                 transferRecordService.updateRecords(record, TransferStatusEnum.FAIL, TransferFailedCodeEnum.TRANSACTION_ERROR);
                 return record;
             }
 
             //事务提交
-            eventPublisher.publish(new TransactionCommitEvent(transactionContext, userAccountOperateParamDTO, merchantAccountOperateParamDTO));
+            eventPublisher.publish(new TransactionCommitEvent(transactionContext, userParam, merchantParam));
             transferRecordService.updateRecords(record, TransferStatusEnum.SUCCESS, null);
             return record;
         } catch (RuntimeException e) {

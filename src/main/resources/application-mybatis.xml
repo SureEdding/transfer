@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${jdbc_driver}"/>
@@ -27,6 +28,43 @@
         <property name="basePackage" value="org.suree.mappers"/>
     </bean>
 
+    <!-- disable transaction -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg ref="dataSource"/>
+    </bean>
 
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes >
+            <tx:method name="save*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="count*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="insert*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="add*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="delete*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="remove*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="accept*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="reject*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="execute*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="del*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="recover*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="sync*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="start*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="stop*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="import*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="launch*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="handle*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="create*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="do*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="finish*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="batch*" propagation="REQUIRED" timeout="10" rollback-for="Exception"/>
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="transactionPointcut"
+                      expression="execution(* org.suree.*.*(..))"/>
+        <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>
+    </aop:config>
 
 </beans>

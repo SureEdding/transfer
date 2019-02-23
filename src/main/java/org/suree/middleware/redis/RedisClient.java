@@ -34,7 +34,6 @@ public class RedisClient {
             return lockResult;
         } catch (Exception e) {
             LOGGER.error("error get lock for key={}, may have some problem with squirrel", key, e);
-            //todo 锁降级
             return downGrade(key, expireTime);
         }
     }

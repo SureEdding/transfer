@@ -9,6 +9,7 @@ public enum TransferFailedCodeEnum {
     TRANSACTION_ERROR(5, "事务错误"),
 
 
+    INVALID_REQUEST(98, "非法请求"),
     UNKNOWN(99, "未知错误发生"),
     ;
 
