@@ -6,13 +6,15 @@ public class UserAccountTransaction {
 
     private Integer id;
 
-    private String transactionNo;
+    private String tradeNo;
 
     private Integer accountNo;
 
+    private BigDecimal originBalance;
+
     private BigDecimal amount;
 
-    private Integer type;
+    private Integer operateType;
 
     private Integer status;
 
@@ -26,12 +28,12 @@ public class UserAccountTransaction {
         this.id = id;
     }
 
-    public String getTransactionNo() {
-        return transactionNo;
+    public String getTradeNo() {
+        return tradeNo;
     }
 
-    public void setTransactionNo(String transactionNo) {
-        this.transactionNo = transactionNo;
+    public void setTradeNo(String tradeNo) {
+        this.tradeNo = tradeNo;
     }
 
     public Integer getAccountNo() {
@@ -42,6 +44,14 @@ public class UserAccountTransaction {
         this.accountNo = accountNo;
     }
 
+    public BigDecimal getOriginBalance() {
+        return originBalance;
+    }
+
+    public void setOriginBalance(BigDecimal originBalance) {
+        this.originBalance = originBalance;
+    }
+
     public BigDecimal getAmount() {
         return amount;
     }
@@ -50,12 +60,12 @@ public class UserAccountTransaction {
         this.amount = amount;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getOperateType() {
+        return operateType;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setOperateType(Integer operateType) {
+        this.operateType = operateType;
     }
 
     public Integer getStatus() {
@@ -76,12 +86,13 @@ public class UserAccountTransaction {
 
     @Override
     public String toString() {
-        return "MerchantAccountTransaction{" +
+        return "UserAccountTransaction{" +
                 "id=" + id +
-                ", transactionNo='" + transactionNo + '\'' +
+                ", tradeNo='" + tradeNo + '\'' +
                 ", accountNo=" + accountNo +
+                ", originBalance=" + originBalance +
                 ", amount=" + amount +
-                ", type=" + type +
+                ", operateType=" + operateType +
                 ", status=" + status +
                 ", createTime=" + createTime +
                 '}';

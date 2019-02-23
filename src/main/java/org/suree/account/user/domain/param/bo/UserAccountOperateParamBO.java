@@ -1,8 +1,8 @@
-package org.suree.account.user.domain.param.dto;
+package org.suree.account.user.domain.param.bo;
 
 import java.math.BigDecimal;
 
-public class UserAccountOperateParamDTO {
+public class UserAccountOperateParamBO {
 
     private Integer accountNo;
 

@@ -8,7 +8,7 @@ public class UserAccount {
 
     private Integer accountNo;
 
-    private BigDecimal amount;
+    private BigDecimal balance;
 
     private BigDecimal frozen_amount;
 
@@ -34,12 +34,12 @@ public class UserAccount {
         this.accountNo = accountNo;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getBalance() {
+        return balance;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     public BigDecimal getFrozen_amount() {
@@ -79,7 +79,7 @@ public class UserAccount {
         return "MerchantAccount{" +
                 "id=" + id +
                 ", accountNo=" + accountNo +
-                ", amount=" + amount +
+                ", balance=" + balance +
                 ", frozen_amount=" + frozen_amount +
                 ", version=" + version +
                 ", createTime=" + createTime +

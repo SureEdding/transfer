@@ -63,7 +63,7 @@ public class TransferManager {
                 return record;
             }
 
-            if (sourceAccount.getAmount().compareTo(transferRequestParamBO.getAmount()) < 0) {
+            if (sourceAccount.getBalance().compareTo(transferRequestParamBO.getAmount()) < 0) {
                 //账户余额不足
                 transferRecordService.updateRecords(record, TransferStatusEnum.FAIL, TransferFailedCodeEnum.BALANCE_NOT_ENOUGH);
                 return record;
@@ -100,10 +100,6 @@ public class TransferManager {
         } finally {
             release(transferRequestParamBO);
         }
-    }
-
-    private UserAccountOperateParamDTO generateOperateParam(TransferRequestParamBO transferRequestParamBO) {
-
     }
 
     private TransferRecord saveRecord(TransferRequestParamBO transferRequestParamBO) {
